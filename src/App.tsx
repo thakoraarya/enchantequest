@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Home} from "./components/Home";
+import {Home} from "./pages/Home";
 import {useDispatch} from "react-redux";
 import authService from "./backend/auth";
 import {login, logout} from "./store/authSlice";
