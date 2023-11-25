@@ -1,4 +1,4 @@
-import {Account, Client, Databases, ID} from 'appwrite';
+import { Account, Client, Databases, ID } from 'appwrite';
 
 interface UserDetails {
     email: string,

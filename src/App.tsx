@@ -25,8 +25,7 @@ function App() {
                 setLoading(false)
             }
             )
-    }, []
-    )
+    })
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -43,7 +42,7 @@ function App() {
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    });
 
 
     return !loading ? (

@@ -10,17 +10,8 @@ interface questionProps {
 }
 
 const Questions: React.FC<questionProps> = ({ qno, question, option1, option2, option3, option4 }) => {
-    const { register, setValue } = useForm();
+    const { register } = useForm();
     const [customOptionSelected, setCustomOptionSelected] = useState(false);
-
-    // const handleCustomOptionSelect = () => {
-    //     // Set the value of the custom option to the input value
-    //     const customOptionValue = document.getElementById(option4)?.ariaValueText || '';
-    //     setValue(qno.toString(), customOptionValue);
-
-    //     // Set customOptionSelected state to true
-    //     setCustomOptionSelected(true);
-    // };
 
     const handleOptionSelect = () => {
         setCustomOptionSelected(false);
@@ -29,8 +20,8 @@ const Questions: React.FC<questionProps> = ({ qno, question, option1, option2, o
 
     return (
         <section className=" w-full rounded-3xl border border-gray900 p-3 backdrop-blur-[11.70px] bg-opacity-30 flex flex-col justify-start gap-y-2 bg-[#434343] ">
-            {qno < 10 ? (<p className="text-lg w-full text-left text-gray100"> 0{qno}</p>) : <p className="text-lg w-full text-left text-gray100"> {qno}</p>}
-            <p className="text-2xl w-full text-left text-gray100">{question}</p>
+            {qno < 10 ? (<p className="md:text-lg text-sm  w-full text-left text-gray100"> 0{qno}</p>) : <p className="md:text-lg text-sm w-full text-left text-gray100"> {qno}</p>}
+            <p className="md:text-2xl text-lg w-full text-left text-gray100">{question}</p>
             {/* 1 option */}
             <div>
                 <input
@@ -67,7 +58,7 @@ const Questions: React.FC<questionProps> = ({ qno, question, option1, option2, o
                     {option2}
                 </label>
             </div>
-            {/* 4 option */}
+            {/* 3 option */}
             <div>
                 <input
                     className="peer sr-only"
@@ -85,7 +76,7 @@ const Questions: React.FC<questionProps> = ({ qno, question, option1, option2, o
                     {option4}
                 </label>
             </div>
-            {/* 3 option */}
+            {/* 4 option */}
             <div>
                 <input
                     className="peer sr-only"
@@ -103,31 +94,6 @@ const Questions: React.FC<questionProps> = ({ qno, question, option1, option2, o
                     {option3}
                 </label>
             </div>
-
-            {/* Additional input for a custom option */}
-            {/* <div>
-                <input
-                    className="peer sr-only"
-                    type="radio"
-                    id={option4}
-                    value={option4}
-                    {...register(qno.toString(), { required: true })}
-                    onClick={handleCustomOptionSelect}
-                />
-                <label
-                    className={`flex border text-gray100 border-gray700 rounded-xl cursor-pointer peer-checked:border-eqred peer-checked:bg-eqred ${customOptionSelected && 'peer-checked'
-                        }`}
-                    htmlFor={option4}
-                >
-                    <input
-                        id={option4}
-                        type="text"
-                        placeholder={'Express your imagination'}
-                        className="w-full rounded-xl p-5  focus:outline-none bg-transparent focus:ring-transparent text-gray100 placeholder:text-[#898989]"
-                        onClick={handleCustomOptionSelect}
-                    />
-                </label>
-            </div> */}
         </section>
     );
 };
