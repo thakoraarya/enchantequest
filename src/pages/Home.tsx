@@ -6,7 +6,7 @@ export function Home() {
     return (
         <>
             <section className={'flex md:flex-row flex-col justify-start md:justify-between xl:px-24 lg:px-16 md:px-10 px-4 xl:pt-[7.06rem] lg:pt-[5rem] md:pt-[4rem] h-full w-full relative overflow-y-hidden overflow-x-hidden'}>
-                <div className='flex flex-col md:w-auto w-full h-full justify-between items-start md:py-8 py-2'>
+                <div className='flex z-10 flex-col md:w-auto w-full h-full justify-between items-start md:py-8 py-2'>
                     <h3 className='text-gray100 md:text-[2rem] text-lg font-kaisei'>AI Story Generator</h3>
                     <div className='h-full flex flex-col items-start md:justify-end justify-start md:gap-y-10 gap-y-3'>
                         <div className='w-full flex justify-between items-center h-auto'>
@@ -27,7 +27,7 @@ export function Home() {
                     </div>
                 </div>
 
-                <img loading={'eager'} className={'absolute inset-0 object-contain md:-right-[30rem] md:-inset-y-[14rem]'} src={'https://cloud.appwrite.io/v1/storage/buckets/655f53e08a4bdbbd88fb/files/655f5413966aa6e7cbe0/view?project=655e0bdd11e79ff324ed&mode=admin'}
+                <img loading={'eager'} className={'fixed -z-0 inset-0 object-contain md:-right-[30rem] md:-inset-y-[14rem]'} src={'https://cloud.appwrite.io/v1/storage/buckets/655f53e08a4bdbbd88fb/files/655f5413966aa6e7cbe0/view?project=655e0bdd11e79ff324ed&mode=admin'}
                     alt={'homepage bg'} />
 
                 <div className='w-full mdLml-4 md:min-w-[30rem] h-full md:ml-12 flex flex-col justify-start gap-y-2 relative'>
