@@ -18,9 +18,7 @@ const HomeLinks = () => {
                 className='box-border w-auto flex border-transparent md:group hover:border-eqred transition-all duration-300 transform-all hover:-translate-y-2 ease-in border-b-2 gap-x-2 justify-between items-center text-gray200 md:text-4xl text-lg font-normal font-flex leading-10'>
                 Bento <OpenInNewIcon />
                 <iframe title='bento' loading='eager' src='https://bento.me/thakoraarya' className='hidden border-2 border-eqred group-hover:block absolute h-96 bg-gradient-to-b from-red-100 via-white transition-all duration-300 ease-out group-hover:hover:h-[40rem] delay-300 to-white scroll-smooth p-5 bottom-10 right-0 rounded-xl w-96' />
-
             </a>
-
         </div>
     )
 }
@@ -41,10 +39,10 @@ const Links = () => {
 
             </a>
             <a href='https://bento.me/thakoraarya' target={'_blank'} rel="noreferrer"
-                className='box-border w-auto flex md:group border-transparent hover:border-eqred transition-all duration-300 transform-all hover:-translate-y-2 ease-in border-b-2 gap-x-2  justify-between items-center text-gray200 text-lg font-normal font-flex leading-10'>
+                className='box-border w-auto flex group border-transparent hover:border-eqred transition-all duration-300 transform-all hover:-translate-y-2 ease-in border-b-2 gap-x-2  justify-between items-center text-gray200 text-lg font-normal font-flex leading-10'>
                 Bento <OpenInNewIcon />
 
-                <iframe title='bento' loading='eager' src='https://bento.me/thakoraarya' className='hidden border-2 border-eqred group-hover:block absolute h-96 bg-gradient-to-b from-red-100 via-white transition-all duration-300 ease-out group-hover:hover:h-[40rem] delay-300 to-white scroll-smooth p-5 top-10 rounded-xl w-96' />
+                <iframe title='bento' loading='eager' src='https://bento.me/thakoraarya' className='hidden border-2 border-eqred group-hover:block absolute h-96 bg-gradient-to-b from-red-100 via-white transition-all duration-300 ease-out group-hover:hover:h-[35rem] delay-300 to-white scroll-smooth p-5 top-10 rounded-xl w-96' />
             </a>
 
         </div>
