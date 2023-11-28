@@ -1,4 +1,3 @@
-// import webpng from '../assets/homepageweb.png'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { HomeLinks } from '../components/links'
 import { Link } from 'react-router-dom';
@@ -10,14 +9,16 @@ export function Home() {
                     <h3 className='text-gray100 md:text-[2rem] text-lg font-kaisei'>AI Story Generator</h3>
                     <div className='h-full flex flex-col items-start md:justify-end justify-start md:gap-y-10 gap-y-3'>
                         <div className='w-full flex justify-between items-center h-auto'>
-                            <Link to={'/createstory'}>
+                            <Link to={'createstory'}>
                                 <button
                                     className={'md:text-4xl text-xl text-gray600 flex justify-between gap-x-2 hover:gap-x-4 md:hover:text-eqred transition-all duration-700 ease-out items-center'}>Lets
                                     Make A Story <ArrowForwardIcon sx={{ color: '#9E0101' }} /></button>
                             </Link>
-                            <button
-                                className={'md:text-4xl text-xl text-gray600 font-flex md:hover:text-eqred transition-all duration-700 ease-out'}>Login
-                            </button>
+                            <Link to={'/login'}>
+                                <button
+                                    className={'md:text-4xl text-xl text-gray600 font-flex md:hover:text-eqred transition-all duration-700 ease-out'}>Login
+                                </button>
+                            </Link>
                         </div>
                         <div className={'h-min w-full '}>
                             <h1 className='font-kaisei md:text-[7rem] text-5xl lg:leading-[5.2rem] leading-[2.5rem]  text-gray100 text-left'>The <br /> Enchanted <br /> Quest
@@ -27,7 +28,7 @@ export function Home() {
                     </div>
                 </div>
 
-                <img loading={'eager'} className={'fixed -z-0 inset-0 object-contain md:-right-[30rem] md:-inset-y-[14rem]'} src={'https://cloud.appwrite.io/v1/storage/buckets/655f53e08a4bdbbd88fb/files/655f5413966aa6e7cbe0/view?project=655e0bdd11e79ff324ed&mode=admin'}
+                <img loading={'eager'} className={'fixed -z-0 object-contain inset-0 md:inset-x-[48rem] md:-inset-y-[14rem]'} src={'https://cloud.appwrite.io/v1/storage/buckets/655f53e08a4bdbbd88fb/files/655f5413966aa6e7cbe0/view?project=655e0bdd11e79ff324ed&mode=admin'}
                     alt={'homepage bg'} />
 
                 <div className='w-full mdLml-4 md:min-w-[30rem] h-full md:ml-12 flex flex-col justify-start gap-y-2 relative'>

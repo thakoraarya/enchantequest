@@ -1,20 +1,10 @@
-import {Account, Client, ID} from 'appwrite';
-// import dotenv from 'dotenv';
-//
-// dotenv.config();
+import { Account, Client, ID } from 'appwrite';
 
 interface UserDetails {
     email: string,
     password: string,
-    username?: string
+    username: string
 }
-
-
-// const client = new Client();
-//
-// client
-//     .setEndpoint('https://cloud.appwrite.io/v1')
-//     .setProject('655e0bdd11e79ff324ed');
 
 export class Auth {
     client = new Client()
@@ -35,14 +25,30 @@ export class Auth {
             if (userAcc) {
                 return this.login(details)
             }
+            console.log(userAcc);
+
         } catch (e) {
             console.log('createAccount', e)
         }
     }
 
+
+    createOauthAccount() {
+        try {
+            const userAcc = this.account.createOAuth2Session('google', 'http://localhost:3000/profile', 'http://localhost:3000/login')
+            console.log(userAcc);
+            return userAcc
+
+        } catch (e) {
+            console.log('createOauthAccount', e)
+        }
+    }
+
     async login(details: UserDetails) {
         try {
+
             return await this.account.createEmailSession(details.email, details.password)
+
 
         } catch (e) {
             console.log("login", e)
@@ -52,7 +58,9 @@ export class Auth {
     async getCurrentUser() {
 
         try {
-            return await this.account.get()
+            const user = await this.account.get()
+            if (user)
+                return user;
         } catch (e) {
             console.log("getCurrentUser", e)
         }
@@ -69,7 +77,6 @@ export class Auth {
 
     }
 }
-
 const authService = new Auth()
 
 
