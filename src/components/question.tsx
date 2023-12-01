@@ -25,12 +25,13 @@ const Option = ({
   control,
   name,
 }: sampleprops) => {
+
   return (
     <Controller
       render={({ field }) => (
         <>
-          <label className="flex px-5 py-3 md:hover:bg-gray500 duration-300 ease-out transition-colors bg-gray700/30 border text-gray100 border-gray700 rounded-xl cursor-pointer peer-checked:bg-eqred peer-checked:border-transparent">
-            <input type="radio" {...field} value={option1} required />
+          <label className={`bg-gray700/30 flex px-5 py-3  md:hover:bg-gray500 duration-300 ease-out transition-colors  border text-gray100 border-gray700 rounded-xl cursor-pointer peer-checked:bg-eqred peer-checked:border-transparent`}>
+            <input type="radio"  {...field} value={option1} required />
             {option1}
           </label>
 

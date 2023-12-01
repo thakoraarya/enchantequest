@@ -10,52 +10,57 @@ import Storyform from "./pages/storyform";
 import StoryDashboard from "./pages/profile";
 import Story from "./pages/story";
 import Notfound from "./pages/notfound";
-import { Login, Signup } from "./components/auth";
+import { AuthChecker, Login, Signup } from "./components/auth";
+import { Home } from "./pages/Home";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
-
-// const router = createBrowserRouter(
-//     createRoutesFromElements(
-
-//         <Route path="/" element={<App />} >
-//             <Route path="createstory" element={<Storyform />} />
-//             <Route path="storydashboard" element={<StoryDashboard />} />
-//             <Route path="story" element={<Story />} />
-//             <Route path="*" element={<Notfound />} />
-//         </Route>
-//     )
-// );
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "/createstory",
-    element: <Storyform />,
-  },
-  {
-    path: "/profile",
-    element: <StoryDashboard />,
-  },
-  {
-    path: "/story",
-    element: <Story />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/newuser",
-    element: <Signup />,
-  },
-  {
-    path: "*",
-    element: <Notfound />,
+    children: [
+      {
+        path: "/",
+        element: (
+          <Home />
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <AuthChecker children={
+            <Login />} authentication={false} />
+        ),
+      },
+      {
+        path: "/newuser",
+        element: (
+          <AuthChecker children={
+            <Signup />} authentication={false} />
+        ),
+      },
+      {
+        path: "/createstory",
+        element: (
+          <AuthChecker children={
+            <Storyform />
+          } authentication />
+        ),
+      },
+      {
+        path: "/profile",
+        element: <StoryDashboard />,
+      },
+      {
+        path: "/story",
+        element: <Story />,
+      },
+      {
+        path: "*",
+        element: <Notfound />,
+      },]
   },
 ]);
 

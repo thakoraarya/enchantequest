@@ -3,8 +3,8 @@ import './App.css';
 import { useDispatch } from "react-redux";
 import authService from "./backend/auth";
 import { login, logout } from "./store/authSlice";
-import { Home } from './pages/Home';
 import { dotPulse } from 'ldrs'
+import { Outlet } from 'react-router-dom';
 
 function App() {
     dotPulse.register()
@@ -25,7 +25,7 @@ function App() {
                 setLoading(false)
             }
             )
-    })
+    }, [loading, dispatch])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -48,7 +48,7 @@ function App() {
     return !loading ? (
 
         <section className='App bg-gray900 w-screen h-screen'>
-            <Home />
+            <Outlet />
         </section>
 
     ) : (

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../backend/auth";
 import { login as storeLogin } from "../store/authSlice";
@@ -8,53 +8,51 @@ import { Links } from "./links";
 import gsap from "gsap";
 import { LoaderAnimation } from "../loaders/LoaderAnimation";
 
-// interface AuthCheckerProps {
-//     children: ReactNode;
-//     authenticate: boolean;
-// }
-// //auth checker
-// export const AuthChecker = ({ children, authenticate = true }: AuthCheckerProps) => {
-//     const navigate = useNavigate()
-//     const [loading, setLoading] = useState(true)
-//     const authStatus = useSelector((state: any) => state.auth.status)
-//     useEffect(() => {
-//         if (authenticate && !authStatus) {
-//             navigate('/login')
-//         }
-//         else if (!authenticate && authStatus) {
-//             navigate('/')
-//         }
-//         setLoading(false)
-//     }, [authStatus, authenticate, navigate])
-//     return loading ? <LoaderAnimation /> : <>{children}</>
-// }
+interface AuthCheckerProps {
+  authentication: boolean
+  children: ReactNode
+}
+//auth checker
+export const AuthChecker = ({ children, authentication = true }: AuthCheckerProps) => {
+  const authStatus = useSelector((state: any) => state.auth.status)
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (authentication && authStatus !== authentication) navigate('/login');
+    else if (!authentication && authStatus === authentication) navigate('/');
+    else setLoading(false)
+  }, [authStatus, navigate, authentication])
+  return loading ? <LoaderAnimation /> : <>{children}</>
+}
 
 // login component
 export const Login = () => {
   const [error, setError] = useState("");
   // const [loading, setLoading] = useState(true)
+  const authStatus = useSelector((state: any) => state.auth.status)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //   const [userData, setUserData] = useState<any>(null); // Add state to hold user data
   const { register, handleSubmit } = useForm();
-
+  document.title = 'login | TEQ';
   const login = async (data: any) => {
     setError("");
     try {
-      const session = await authService.login(data);
+      if (authStatus !== false) {
 
-      if (session) {
-        const userData = await authService.getCurrentUser();
-
-        if (userData) {
-          dispatch(storeLogin(userData));
-          // setUserData(userData); // Set user data to state
-          console.log(userData);
-          navigate("/profile");
-        } else return setError(error);
-      } else return setError(error);
-      if (session) {
-        console.table(session);
+        const session = await authService.login(data);
+        if (session) {
+          const userData = await authService.getCurrentUser();
+          if (userData) {
+            dispatch(storeLogin(userData));
+            console.log(userData.name);
+            navigate('/');
+          } else return setError(error);
+        }
+        else return setError(error);
+        if (session) {
+          console.table(session);
+        }
       }
     } catch (error: any) {
       return setError(error.message);
@@ -154,7 +152,7 @@ export const Signup = () => {
         if (userData) {
           dispatch(storeLogin(userData));
           setLoading(true);
-          navigate("/profile");
+          navigate(-1);
         }
       } else {
         setError(error);

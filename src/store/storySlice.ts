@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit"
-
 const initialState = {
     status: false,
-    storyContent: null
+    storyContent: null,
+    formContent: null,
 }
 
 const storySlice = createSlice({
     name: "story",
     initialState,
     reducers: {
-        createStory: (state, action) => {
+        formDataSub: (state, action) => {
+            state.status = true;
+            state.formContent = action.payload.formContent;
+        },
+        genStory: (state, action) => {
             state.status = true;
             state.storyContent = action.payload.storyContent;
         },
@@ -20,5 +24,5 @@ const storySlice = createSlice({
     }
 })
 
-export const { createStory, deleteStory } = storySlice.actions;
+export const { genStory, deleteStory, formDataSub } = storySlice.actions;
 export default storySlice.reducer;
