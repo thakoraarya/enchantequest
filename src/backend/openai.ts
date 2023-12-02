@@ -6,10 +6,12 @@ import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
 
 export const useCreateStory = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const apikey: string = process.env.REACT_APP_OPENAI_API_KEY as string;
+
   //configure openai
-  const apikey = "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";
   const checkUser = useSelector((state: any) => state.auth.userData)
   const openai = new OpenAI({ apiKey: apikey, dangerouslyAllowBrowser: true });
 
@@ -43,10 +45,9 @@ export const useCreateStory = () => {
       storyname: responsetitle,
       storycontent: responsecontent,
     })
-    const savedstorycontent = StoreStory.userid;
-    console.log('savedstorycontent', savedstorycontent)
-    dispatch(genStory({ storyContent: savedstorycontent }));
+    const savedstorycontent = StoreStory.$id;
     console.log("storyid", StoreStory.$id);
+    dispatch(genStory({ storyContent: savedstorycontent }));
     return navigate('/story')
   }
   return { createstory }

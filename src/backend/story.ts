@@ -10,16 +10,15 @@ export class Story {
     client = new Client()
     account;
     database;
-    dcid: string = '655f403b2d6d9367440d';
-    clnid: string = '655f404ab6f7b1105cfc';
-    // questionclnid: string = '656118f6a61ce384d2e6';
-    // endpoint:string = process.env.REACT_APP_APPWRITE_ENDPOINT;
-    // projectid:string = process.env.REACT_APP_APPWRITE_PROJECT;
+    dcid: string = process.env.REACT_APP_APPWRITE_DB as string;
+    clnid: string = process.env.REACT_APP_APPWRITE_COLLECTION as string;
+    endpoint: string = process.env.REACT_APP_APPWRITE_ENDPOINT as string;
+    project: string = process.env.REACT_APP_APPWRITE_PROJECT as string;
 
     constructor() {
         this.client
-            .setEndpoint('https://cloud.appwrite.io/v1')
-            .setProject('655e0bdd11e79ff324ed');
+            .setEndpoint(this.endpoint)
+            .setProject(this.project);
         this.account = new Account(this.client)
         this.database = new Databases(this.client);
     }
@@ -55,18 +54,18 @@ export class Story {
     async getStories(details: StoryDetails) {
         try {
             if (details.userid !== null) {
-                await this.database.getDocument(this.dcid, this.clnid, details.userid)
+                await this.database.listDocuments(this.dcid, this.clnid)
             }
         } catch (e) {
             console.log("getPost", e)
         }
     }
     // fetch selected story of a user
-    async getStory(details: StoryDetails) {
+    async getStory(stroyId: string) {
         try {
-            if (details.userid !== null) {
-                await this.database.getDocument(this.dcid, this.clnid, details.storyId)
-            }
+            const reqStory: any = await this.database.getDocument(this.dcid, this.clnid, stroyId)
+            return reqStory as string;
+
         } catch (e) {
             console.log("getPost", e)
         }

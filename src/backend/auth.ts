@@ -9,13 +9,13 @@ interface UserDetails {
 export class Auth {
     client = new Client()
     account;
-    // endpoint:string = process.env.REACT_APP_APPWRITE_ENDPOINT;
-    // projectid:string = process.env.REACT_APP_APPWRITE_PROJECT;
+    endpoint: string = process.env.REACT_APP_APPWRITE_ENDPOINT as string;
+    projectid: string = process.env.REACT_APP_APPWRITE_PROJECT as string;
 
     constructor() {
         this.client
-            .setEndpoint('https://cloud.appwrite.io/v1')
-            .setProject('655e0bdd11e79ff324ed');
+            .setEndpoint(this.endpoint)
+            .setProject(this.projectid);
         this.account = new Account(this.client)
     }
 
@@ -33,16 +33,16 @@ export class Auth {
     }
 
 
-    createOauthAccount() {
-        try {
-            const userAcc = this.account.createOAuth2Session('google', 'http://localhost:3000/profile', 'http://localhost:3000/login')
-            console.log(userAcc);
-            return userAcc
+    // createOauthAccount() {
+    //     try {
+    //         const userAcc = this.account.createOAuth2Session('google', 'http://localhost:3000/profile', 'http://localhost:3000/login')
+    //         console.log(userAcc);
+    //         return userAcc
 
-        } catch (e) {
-            console.log('createOauthAccount', e)
-        }
-    }
+    //     } catch (e) {
+    //         console.log('createOauthAccount', e)
+    //     }
+    // }
 
     async login(details: UserDetails) {
         try {
